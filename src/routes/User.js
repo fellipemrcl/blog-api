@@ -6,4 +6,6 @@ userRouter.post('/', userController.createUser);
 
 userRouter.get('/', authMiddleware, userController.getAllUsers);
 
+userRouter.get('/:id', authMiddleware, userController.getUserById);
+
 module.exports = userRouter;

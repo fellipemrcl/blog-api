@@ -1,7 +1,7 @@
 const { User } = require('../models');
 const { userValidation } = require('./validations/inputValidations');
 
-const findById = async (id) => {
+const getUserById = async (id) => {
   const user = await User.findByPk(id, {
     attributes: { exclude: ['password'] },
   });
@@ -39,7 +39,7 @@ const getAllUsers = async () => {
 
 module.exports = {
   createUser,
-  findById,
+  getUserById,
   getAllUsers,
   getByEmail,
 };
