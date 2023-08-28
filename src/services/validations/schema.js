@@ -7,6 +7,11 @@ const userSchema = joi.object({
   image: joi.string(),
 });
 
+const categorySchema = joi.string().required().messages({
+  'any.required': '"name" is required',
+});
+
 module.exports = {
+  categorySchema,
   userSchema,
 };
