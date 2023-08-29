@@ -15,6 +15,7 @@ app.use(express.json());
 app.use('/login', routes.loginRoutes);
 app.use('/user', routes.userRoutes);
 app.use('/categories', routes.categoryRoutes);
+app.use('/post', routes.postRoutes);
 
 // É importante exportar a constante `app`,
 // para que possa ser utilizada pelo arquivo `src/server.js`
