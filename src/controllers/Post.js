@@ -57,9 +57,4 @@ const updatePost = async (req, res) => {
   }
 };
 
-module.exports = {
-  createPost,
-  getPosts,
-  getPostById,
-  updatePost,
-};
+module.exports = { createPost, getPosts, getPostById, updatePost };
