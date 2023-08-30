@@ -7,14 +7,8 @@ const createPost = async ({ title, content, categoryIds, userId }) => {
   if (error) { return { status: 'INVALID_VALUE', data: { message: error.message } }; }
   const areCategoryIdsValid = await checkCategoryIds(categoryIds);
   if (areCategoryIdsValid) return areCategoryIdsValid;
-  const newPost = await BlogPost.create({
-    title,
-    content,
-    categoryIds,
-    userId,
-    updated: new Date(),
-    published: new Date(),
-  });
+  const newPost = await BlogPost
+  .create({ title, content, categoryIds, userId, updated: new Date(), published: new Date() });
   await PostCategory
   .bulkCreate([...categoryIds.map((eachId) => ({ categoryId: eachId, postId: newPost.id }))]);
   return { status: 'CREATED', data: newPost.dataValues };
@@ -50,7 +44,6 @@ const updatePost = async (content, title, id, userId) => {
   if (!content || !title) {
     return { status: 'INVALID_VALUE', data: { message: 'Some required fields are missing' } };
   }
-
   if (Number(id) === Number(userId)) {
     await BlogPost.update(
       { content, title, updated: new Date() },
@@ -59,7 +52,6 @@ const updatePost = async (content, title, id, userId) => {
     const modifiedPost = await getPostById(id);
     return { status: 'SUCCESSFUL', data: modifiedPost.data };
   }
-
   return { status: 'UNAUTHORIZED', data: { message: 'Unauthorized user' } };
 };
 
