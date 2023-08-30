@@ -69,8 +69,26 @@ const getPostById = async (id) => {
   return { status: 'SUCCESSFUL', data: post };
 };
 
+const updatePost = async (content, title, id, userId) => {
+  if (!content || !title) {
+    return { status: 'INVALID_VALUE', data: { message: 'Some required fields are missing' } };
+  }
+
+  if (Number(id) === Number(userId)) {
+    await BlogPost.update(
+      { content, title, updated: new Date() },
+      { where: { id } },
+    );
+    const modifiedPost = await getPostById(id);
+    return { status: 'SUCCESSFUL', data: modifiedPost.data };
+  }
+
+  return { status: 'UNAUTHORIZED', data: { message: 'Unauthorized user' } };
+};
+
 module.exports = {
   createPost,
   getPostById,
   getPosts,
+  updatePost,
 };
