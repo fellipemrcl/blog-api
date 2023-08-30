@@ -18,6 +18,17 @@ const createPost = async (req, res) => {
   }
 };
 
+const getPosts = async (req, res) => {
+  try {
+    const { data, status } = await postService.getPosts();
+    res.status(mapStatusHTTP(status)).json(data);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   createPost,
+  getPosts,
 };
