@@ -11,6 +11,32 @@ O Blog API é uma plataforma avançada de backend, construída para oferecer uma
 
 Em breve
 
+## Rodando o projeto localmente
+
+- Faça o clone do projeto: 
+
+```
+git clone git@github.com:fellipemrcl/blog-api.git
+```
+
+- Navegue até a pasta recém criada:
+
+```
+cd blog-api/
+```
+
+- Instale as dependências do projeto:
+
+```
+npm install
+```
+
+- Rode o projeto:
+
+```
+npm start
+```
+
 ## Funcionalidades
 
 - Criação de novas postagens de blog
